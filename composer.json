@@ -17,6 +17,9 @@
         }
     },
     "extra": {
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
+        },
         "laravel": {
             "providers": [
                 "Ok200\\Analytics\\Ok200AnalyticsServiceProvider"
