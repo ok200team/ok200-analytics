@@ -26,7 +26,28 @@ class RecordOrder implements ShouldQueue
 
     public function handle(Ok200Client $client): void
     {
+        $debug = config('ok200.debug');
+
+        if ($debug) {
+            Log::debug('OK200 Analytics: RecordOrder job started', [
+                'user_sha1' => $this->userSha1,
+                'order_value' => $this->orderValue,
+                'order_id' => $this->orderId,
+                'config' => [
+                    'token_set' => ! empty(config('ok200.token')),
+                    'endpoint' => config('ok200.endpoint'),
+                    'domain' => config('ok200.domain'),
+                    'production_only' => config('ok200.production_only'),
+                    'app_env' => config('app.env'),
+                ],
+            ]);
+        }
+
         if (config('ok200.production_only') && config('app.env') !== 'production') {
+            if ($debug) {
+                Log::debug('OK200 Analytics: RecordOrder skipped (non-production environment)');
+            }
+
             return;
         }
 

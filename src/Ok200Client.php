@@ -4,6 +4,7 @@ namespace Ok200\Analytics;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\Log;
 
 class Ok200Client
 {
@@ -25,6 +26,17 @@ class Ok200Client
      */
     public function send(array $payload): bool
     {
+        $debug = config('ok200.debug');
+
+        if ($debug) {
+            Log::debug('OK200 Analytics: sending request', [
+                'endpoint' => $this->endpoint,
+                'token_set' => ! empty($this->token),
+                'token_preview' => substr($this->token, 0, 8).'...',
+                'payload' => $payload,
+            ]);
+        }
+
         $response = $this->http->post($this->endpoint, [
             'headers' => [
                 'Accept' => 'application/json',
@@ -32,6 +44,13 @@ class Ok200Client
             ],
             'form_params' => $payload,
         ]);
+
+        if ($debug) {
+            Log::debug('OK200 Analytics: response received', [
+                'status' => $response->getStatusCode(),
+                'body' => $response->getBody()->getContents(),
+            ]);
+        }
 
         return $response->getStatusCode() === 200;
     }
