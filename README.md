@@ -20,7 +20,7 @@ This package is not available on Packagist. To install it, add the GitHub reposi
 Then require the package:
 
 ```bash
-composer require ok200/analytics:dev-main
+composer require ok200/analytics
 ```
 
 > If the repository is private, make sure Composer has access via an SSH key or a [GitHub OAuth token](https://getcomposer.org/doc/articles/authentication-for-private-packages.md#github-oauth).
