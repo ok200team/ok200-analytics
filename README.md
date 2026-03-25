@@ -11,7 +11,7 @@ This package is not available on Packagist. To install it, add the GitHub reposi
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/ok200/ok200-analytics.git"
+            "url": "https://github.com/ok200team/ok200-analytics.git"
         }
     ]
 }
