@@ -1,0 +1,31 @@
+{
+    "name": "ok200/analytics",
+    "description": "OK200 Analytics SDK for Laravel applications",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/bus": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0",
+        "illuminate/queue": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ok200\\Analytics\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ok200\\Analytics\\Ok200AnalyticsServiceProvider"
+            ],
+            "aliases": {
+                "Ok200Analytics": "Ok200\\Analytics\\Facades\\Ok200Analytics"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
